@@ -7,6 +7,7 @@ import "fmt"
 type deck []string
 
 // prints the card
+// any variable of type 'deck' have access to this function
 func (d deck) printCard() {
 	for i, card := range d {
 		fmt.Println(i, card)
