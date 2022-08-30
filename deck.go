@@ -30,6 +30,9 @@ func (d deck) printCard() {
 	}
 }
 
+// deal() returs two 'deck' type values, which are of type []string
+// d is the main deck on which it will operate.
+// handSize is from which it will divide the deck.
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
