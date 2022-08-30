@@ -45,10 +45,35 @@ func deal(d deck, handSize int) (deck, deck) {
 func (d deck) deckToString() string {
 	// convert deck to slice of string
 	// join each element inside the slice of string, seperate them with a comma (,)
-	return strings.Join([]string(d), ",")
+	// convert deck to []string
+	ds := []string(d)
+	// convert []string to string
+	s := strings.Join(ds, ",")
+	// s := strings.Join([]string(d), ",")
+	return s
 }
 
 // Save deck of card into the hard drive, with 'filename' and default permissions
 func (d deck) saveToFile(filename string) error {
 	return os.WriteFile(filename, []byte(d.deckToString()), 0666) // 0666: anyone can read or write to the file
+}
+
+func getFromFile(filename string) deck {
+	// read from file
+	fileData, err := os.ReadFile(filename)
+	if err != nil {
+		// Log the error and entirely quit the program
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
+
+	// convert []byte to string
+	bs := string(fileData)
+	// convert string to []string
+	s := strings.Split(bs, ",")
+	// convert []string to deck
+	d := deck(s)
+
+	// d := deck(strings.Split(string(fileData), ","))
+	return d
 }
