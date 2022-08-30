@@ -12,7 +12,7 @@ import (
 // which is a slice of strings
 type deck []string
 
-// Create and return a list of cards
+// newDeck(), returns a deck of cards
 func newDeck() deck {
 	cards := deck{}
 
@@ -28,7 +28,7 @@ func newDeck() deck {
 	return cards
 }
 
-// prints the card
+// printCard(), prints the card
 // any variable of type 'deck' have access to this function
 func (d deck) printCard() {
 	for i, card := range d {
@@ -43,7 +43,7 @@ func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
 
-// deckToString() returns string representation of the deck
+// deckToString(), returns string representation of the deck
 func (d deck) deckToString() string {
 	// convert deck to slice of string
 	// join each element inside the slice of string, seperate them with a comma (,)
@@ -55,7 +55,7 @@ func (d deck) deckToString() string {
 	return s
 }
 
-// Save deck of card into the hard drive, with 'filename' and default permissions
+// saveToFile(), Saves deck of card into the hard drive, with 'filename' and default permissions
 func (d deck) saveToFile(filename string) error {
 	// convert the deck into string
 	s := d.deckToString()
@@ -65,6 +65,7 @@ func (d deck) saveToFile(filename string) error {
 	return os.WriteFile(filename, sb, 0666) // 0666: anyone can read or write to the file
 }
 
+// getFromFile(), returns deck, for the given filename from hard drive
 func getFromFile(filename string) deck {
 	// read from file
 	fileData, err := os.ReadFile(filename)
@@ -85,8 +86,7 @@ func getFromFile(filename string) deck {
 	return d
 }
 
-// shuffle() takes the deck of card
-// randomly shuffles it
+// shuffle(), takes the deck of card and randomly shuffles it
 func (d deck) shuffle() {
 	// random seed value for rand.Intn()
 	// every time run the program, get an unique int64 value, to get unique seed value
