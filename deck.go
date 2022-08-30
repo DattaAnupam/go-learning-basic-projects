@@ -46,16 +46,21 @@ func (d deck) deckToString() string {
 	// convert deck to slice of string
 	// join each element inside the slice of string, seperate them with a comma (,)
 	// convert deck to []string
-	ds := []string(d)
+	ss := []string(d)
 	// convert []string to string
-	s := strings.Join(ds, ",")
+	s := strings.Join(ss, ",")
 	// s := strings.Join([]string(d), ",")
 	return s
 }
 
 // Save deck of card into the hard drive, with 'filename' and default permissions
 func (d deck) saveToFile(filename string) error {
-	return os.WriteFile(filename, []byte(d.deckToString()), 0666) // 0666: anyone can read or write to the file
+	// convert the deck into string
+	s := d.deckToString()
+	// convert the string to []byte
+	sb := []byte(s)
+	// bs := []byte(d.deckToString())
+	return os.WriteFile(filename, sb, 0666) // 0666: anyone can read or write to the file
 }
 
 func getFromFile(filename string) deck {
