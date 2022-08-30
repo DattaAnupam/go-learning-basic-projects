@@ -46,11 +46,11 @@ func TestDeal(t *testing.T) {
 	deck := newDeck()
 	d1, d2 := deal(deck, 3)
 
-	if len(d1) == 0 {
-		t.Errorf("Expected element in the first deck, but got nothing")
+	if len(d1) != 3 {
+		t.Errorf("Expected first deck of length 3, but got %d", len(d1))
 	}
 
-	if len(d2) == len(deck) {
-		t.Errorf("Second deck should have less amount of cards than the original one")
+	if len(d2) != 49 {
+		t.Errorf("Expected second deck of length 49, but got %d", len(d2))
 	}
 }
