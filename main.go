@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	cards := getFromFile("my_cards")
+	cards := newDeck()
+	cards.shuffle()
 	fmt.Println(cards)
 }
