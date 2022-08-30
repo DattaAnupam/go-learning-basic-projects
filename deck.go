@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // Create a new type of 'deck'
@@ -87,9 +88,14 @@ func getFromFile(filename string) deck {
 // shuffle() takes the deck of card
 // randomly shuffles it
 func (d deck) shuffle() {
+	// random seed value for rand.Intn()
+	// every time run the program, get an unique int64 value, to get unique seed value
+	source := rand.NewSource(time.Now().Unix())
+	r := rand.New(source)
+
 	for i := range d {
 		// get an random integer from 0 to (length of deck -1)
-		newPosition := rand.Intn(len(d) - 1)
+		newPosition := r.Intn(len(d) - 1)
 
 		// swap the two values
 		d[i], d[newPosition] = d[newPosition], d[i]
