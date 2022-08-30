@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestNewDeck(t *testing.T) {
 	d := newDeck()
@@ -18,5 +21,36 @@ func TestNewDeck(t *testing.T) {
 	// Check last card of the is Clubs of Queen
 	if d[len(d)-1] != "Clubs of Queen" {
 		t.Errorf("Expected last card as Clubs of Queen, but got %s", d[len(d)-1])
+	}
+}
+
+func TestSaveToFileAndGetFromFile(t *testing.T) {
+	expCardLen := 52
+	// clean any previous left over dummy file of testing
+	os.Remove("_decktesting")
+
+	deck := newDeck()
+	deck.saveToFile("_decktesting")
+
+	loadedDeck := getFromFile("_decktesting")
+
+	if len(loadedDeck) != expCardLen {
+		t.Errorf("Expected deck of length %d, but got %d", expCardLen, len(loadedDeck))
+	}
+
+	// clean dummy file of testing
+	os.Remove("_decktesting")
+}
+
+func TestDeal(t *testing.T) {
+	deck := newDeck()
+	d1, d2 := deal(deck, 3)
+
+	if len(d1) == 0 {
+		t.Errorf("Expected element in the first deck, but got nothing")
+	}
+
+	if len(d2) == len(deck) {
+		t.Errorf("Second deck should have less amount of cards than the original one")
 	}
 }
