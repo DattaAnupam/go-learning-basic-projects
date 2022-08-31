@@ -25,12 +25,9 @@ func main() {
 		},
 	}
 
-	// storing the memory address of 'anupam',
-	// point to the memory address of 'anupam'
-	// and is type of Person, as pointing to a data of type Person
-	pAnupam := &anupam
 	// update first name
-	pAnupam.updateFirstName("bapi")
+	// can call a function of type pointer to Person
+	anupam.updateFirstName("bapi")
 
 	anupam.printPerson()
 }
