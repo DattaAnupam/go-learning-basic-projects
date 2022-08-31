@@ -25,5 +25,9 @@ func main() {
 		},
 	}
 
-	fmt.Println(anupam)
+	anupam.printPerson()
+}
+
+func (p Person) printPerson() {
+	fmt.Println(p)
 }
