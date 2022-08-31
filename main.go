@@ -1,18 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+type ContactInfo struct {
+	email   string
+	pinCode string
+}
 
 type Person struct {
 	firstname string
 	lastname  string
-	age       int
+	contact   ContactInfo
 }
 
 func main() {
 	anupam := Person{
 		firstname: "Anupam",
 		lastname:  "Datta",
-		age:       28,
+		contact: ContactInfo{
+			email:   "anupam@gmail.com",
+			pinCode: "734005",
+		},
 	}
 
 	fmt.Println(anupam)
