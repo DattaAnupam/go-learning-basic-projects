@@ -25,7 +25,20 @@ func main() {
 		},
 	}
 
+	// storing the memory address of 'anupam',
+	// point to the memory address of 'anupam'
+	// and is type of Person, as pointing to a data of type Person
+	pAnupam := &anupam
+	// update first name
+	pAnupam.updateFirstName("bapi")
+
 	anupam.printPerson()
+}
+
+func (p *Person) updateFirstName(newFirstName string) {
+	// *p: value at p, which is 'anupam' object
+	// get whatever inside the memory address pointed by p
+	(*p).firstname = newFirstName
 }
 
 func (p Person) printPerson() {
