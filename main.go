@@ -5,19 +5,30 @@ import (
 )
 
 func main() {
-	colors := make(map[string]string)
+	trafficColors := map[string]string{
+		"Green":  "Go",
+		"Yellow": "Slow Down",
+		"Red":    "Stop",
+	}
+	fmt.Println(trafficColors)
 
-	colors["firstColor"] = "Green"
-	colors["secondColor"] = "Yellow"
-	colors["thirdColor"] = "Red"
+	printColorMsg(trafficColors)
 
-	fmt.Println("Colors before deleting first color")
-	fmt.Println(colors)
+	ChangeColor(trafficColors)
+	if trafficColors["Green"] == "Dance" {
+		fmt.Printf("Now you can %s\n", trafficColors["Green"])
+	}
 
-	// delete value from map
-	// call delete function, pass the map name and key
-	delete(colors, "firstColor")
+	fmt.Println(trafficColors)
+}
 
-	fmt.Println("Colors after deleting first color")
-	fmt.Println(colors)
+func printColorMsg(trafficColors map[string]string) {
+	fmt.Println()
+	for color, msg := range trafficColors {
+		fmt.Printf("If the Signal is %s then you should %s\n", color, msg)
+	}
+}
+
+func ChangeColor(trafficColors map[string]string) {
+	trafficColors["Green"] = "Dance"
 }
