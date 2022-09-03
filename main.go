@@ -5,5 +5,11 @@ import (
 )
 
 func main() {
-	fmt.Println("Initial Code Structure")
+	// Way 1 of declaring Map
+	colors := map[string]string{
+		"firstColor":  "Red",
+		"secondColor": "Green",
+		"thirdColor":  "Yellow",
+	}
+	fmt.Println(colors)
 }
