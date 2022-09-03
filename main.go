@@ -5,9 +5,12 @@ import (
 )
 
 func main() {
-	// Way 3 of declaring Map
-	// Only declaration. We declare in this way when we are going to put values
-	// in future executions.
 	colors := make(map[string]string)
+	// put value into map
+	// using key-value
+	colors["firstColor"] = "Green"
+	colors["secondColor"] = "Yellow"
+	colors["thirdColor"] = "Red"
+
 	fmt.Println(colors)
 }
