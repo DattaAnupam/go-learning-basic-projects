@@ -5,11 +5,9 @@ import (
 )
 
 func main() {
-	// Way 1 of declaring Map
-	colors := map[string]string{
-		"firstColor":  "Red",
-		"secondColor": "Green",
-		"thirdColor":  "Yellow",
-	}
+	// Way 2 of declaring Map
+	// Only declaration. We declare in this way when we are going to put values
+	// in future executions.
+	var colors map[string]string
 	fmt.Println(colors)
 }
