@@ -16,6 +16,7 @@ type shape interface {
 	// should have a definition of all the functions defined
 	// inside the interface
 	area() float64
+	perimeter() float64
 }
 
 func main() {
@@ -37,13 +38,21 @@ func main() {
 func (t triangle) area() float64 {
 	return 0.5 * t.base * t.height
 }
+func (t triangle) perimeter() float64 {
+	// considering Equilateral triangle
+	return 3 * t.base
+}
 
 // Definition for interface's function for square struct
 func (s square) area() float64 {
 	return s.side * s.side
 }
+func (s square) perimeter() float64 {
+	return 4 * s.side
+}
 
 // Prints the area
 func printArea(s shape) {
-	fmt.Println(s.area())
+	fmt.Println("Area: ", s.area())
+	fmt.Println("Perimeter: ", s.perimeter())
 }
