@@ -1,34 +1,49 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
+
+type triangle struct {
+	base   float64
+	height float64
+}
+
+type square struct {
+	side float64
+}
+
+type shape interface {
+	// every struct who wants to implement this interface
+	// should have a definition of all the functions defined
+	// inside the interface
+	area() float64
+}
 
 func main() {
-	trafficColors := map[string]string{
-		"Green":  "Go",
-		"Yellow": "Slow Down",
-		"Red":    "Stop",
+	t := triangle{
+		base:   2.1,
+		height: 3,
 	}
-	fmt.Println(trafficColors)
-
-	printColorMsg(trafficColors)
-
-	ChangeColor(trafficColors)
-	if trafficColors["Green"] == "Dance" {
-		fmt.Printf("Now you can %s\n", trafficColors["Green"])
+	s := square{
+		side: 3,
 	}
 
-	fmt.Println(trafficColors)
+	// print area of triangle
+	printArea(t)
+	// print area of square
+	printArea(s)
 }
 
-func printColorMsg(trafficColors map[string]string) {
-	fmt.Println()
-	for color, msg := range trafficColors {
-		fmt.Printf("If the Signal is %s then you should %s\n", color, msg)
-	}
+// Definition for interface's function for triangle struct
+func (t triangle) area() float64 {
+	return 0.5 * t.base * t.height
 }
 
-func ChangeColor(trafficColors map[string]string) {
-	trafficColors["Green"] = "Dance"
+// Definition for interface's function for square struct
+func (s square) area() float64 {
+	return s.side * s.side
+}
+
+// Prints the area
+func printArea(s shape) {
+	fmt.Println(s.area())
 }
